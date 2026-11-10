@@ -4,7 +4,7 @@ Apresentação do andamento da pesquisa de mestrado em Ciência Política (IPOL/
 
 **Autora:** Bruna Gomes Guimarães · **Orientador:** Prof. Frederico Bertholini
 
-👉 **Ver a apresentação:** https://brunagguimaraes.github.io/Densidade-de-pol-ticas-de-mulheres/
+👉 **Ver a apresentação:** https://brunagguimaraes.github.io/Densidade-de-politicas-de-mulheres/
 
 ## Conteúdo
 
