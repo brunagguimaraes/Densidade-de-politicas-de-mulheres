@@ -1,0 +1,340 @@
+---
+pagetitle: "Densidade de políticas para mulheres e ideologias político-partidárias"
+output:
+  ioslides_presentation:
+    widescreen: true
+    css: unb.css
+    self_contained: true
+---
+
+```{r setup, include = FALSE}
+# Apresentação de andamento da pesquisa
+# Bancos: dados/df_analise.rds e dados/df_final.rds (gerados pelo script 05_df_final.R do projeto)
+# Para gerar o HTML: abrir no RStudio e clicar em Knit.
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE,
+                      fig.width = 11, fig.height = 4.9, dpi = 150, fig.align = "center")
+pacman::p_load(dplyr, tidyr, ggplot2, knitr)
+
+df <- readRDS("dados/df_analise.rds")
+
+# Trajetória do governo estadual entre períodos (4 grupos)
+df <- df |>
+  arrange(uf, ano) |>
+  group_by(uf) |>
+  mutate(
+    gov_ant  = lag(gov_esp),
+    traj_gov = case_when(
+      is.na(gov_ant)                                ~ NA_character_,
+      gov_ant == "Esquerda" & gov_esp == "Esquerda" ~ "Manteve esquerda",
+      gov_ant == "Direita"  & gov_esp == "Esquerda" ~ "Para a esquerda",
+      gov_ant == "Esquerda" & gov_esp == "Direita"  ~ "Para a direita",
+      gov_ant == "Direita"  & gov_esp == "Direita"  ~ "Manteve direita"),
+    traj_gov = factor(traj_gov, levels = c("Manteve esquerda", "Para a esquerda",
+                                           "Para a direita", "Manteve direita")),
+    # % de municípios com prefeito de direita (CD + D + UD) e sua variação
+    pref_dir   = pref_cd + pref_d + pref_ud,
+    d_pref_dir = pref_dir - lag(pref_dir)
+  ) |>
+  ungroup()
+
+cores_gov <- c("Manteve esquerda" = "#B03A2E", "Para a esquerda" = "#E59A8F",
+               "Para a direita"   = "#86AEDB", "Manteve direita" = "#003F7D")
+
+tema <- theme_minimal(base_size = 15) +
+  theme(panel.grid.minor = element_blank(),
+        strip.text = element_text(face = "bold", size = 15, colour = "#003F7D"),
+        legend.position = "none",
+        plot.caption = element_text(colour = "grey45", size = 11))
+
+# Gráfico de variação por trajetória do governo estadual, por período
+graf_traj <- function(d, var, rotulo) {
+  d <- d |> filter(!is.na(traj_gov), !is.na(.data[[var]]))
+  n <- d |> count(periodo, traj_gov)
+  ggplot(d, aes(x = traj_gov, y = .data[[var]], colour = traj_gov)) +
+    geom_hline(yintercept = 0, linetype = "dashed", colour = "grey60") +
+    geom_jitter(width = 0.12, height = 0, size = 3, alpha = 0.85) +
+    stat_summary(fun = median, fun.min = median, fun.max = median,
+                 geom = "crossbar", width = 0.5, colour = "grey15", linewidth = 0.5) +
+    geom_text(data = n, aes(x = traj_gov, y = -Inf, label = paste0("n = ", n)),
+              inherit.aes = FALSE, vjust = -0.6, colour = "grey40", size = 4) +
+    facet_wrap(~ periodo) +
+    scale_colour_manual(values = cores_gov) +
+    labs(x = NULL, y = rotulo) +
+    tema +
+    theme(axis.text.x = element_text(size = 12))
+}
+
+fmt <- function(x) format(round(x, 1), nsmall = 1, decimal.mark = ",")
+med_rede <- df |>
+  filter(!is.na(periodo)) |>
+  group_by(periodo) |>
+  summarise(m = median(d_rede_est, na.rm = TRUE)) |>
+  arrange(periodo)
+```
+
+## {.capa}
+
+<div class="capa">
+
+![](logounb.jpg)
+
+<div class="titulo">Uma análise da densidade de políticas públicas para mulheres associada às ideologias político-partidárias</div>
+
+<div class="autoria">
+
+**Bruna Gomes Guimarães**<br>
+Mestranda em Ciência Política – IPOL/UnB<br>
+Orientador: **Prof. Frederico Bertholini**
+
+</div>
+
+<div class="rodape">Apresentação do andamento da pesquisa · novembro de 2026</div>
+
+</div>
+
+## Pergunta e problema de pesquisa
+
+<div class="caixa-azul">
+
+**Pergunta:** em que medida as ideologias político-partidárias no Brasil estão associadas à variação na **densidade** do subsistema de políticas públicas para mulheres?
+
+</div>
+
+### Problema
+
+- Diante da ascensão de governos populistas e neoconservadores de direita, a literatura documenta reação e esvaziamento das pautas e estruturas estatais de igualdade de gênero (*backsliding*, política antigênero).
+- No Brasil, esse subsistema é composto por organismos, conselhos, planos e serviços em estados e municípios – e convive com ciclos de expansão e retração.
+- Será que essas variações acompanham a orientação ideológica de quem governa?
+
+<div class="notes">
+
+Unidade de análise: estado-ano (26 UFs, sem o DF, × MUNIC/ESTADIC 2013, 2018 e 2023).
+
+</div>
+
+## Conceitos teóricos, lacuna e contribuição
+
+<div class="conceitos" style="display:flex; gap:24px;">
+
+<div style="flex:1;">
+
+- **Policy dismantling** (Bauer e Knill, 2012): corte ou enfraquecimento de políticas; aplico apenas o aspecto da **densidade** (nº de estrutura, políticas e instrumentos) .
+- **Policy backsliding** e **Política antigênero** (Krizsán et al., 2026; Roggeband e Krizsán, 2018)
+- **Ideologia político-partidária**: escala de Bolognesi, Ribeiro e Codato (2023)*
+*PSL, PRTB PL como ultradireita Borges e Zanotti (2024),Borges (2023), Rennó (2023), Talita Tanscheit e Lisa Zanotti (2023).*
+
+</div>
+
+<div style="flex:1;">
+
+<div class="caixa">
+
+**Lacuna**<br>
+Inicialmente a literatura de desmantelamento aponta como motivações: a crise fiscal e a austeridade (Pierson, 1994; Bauer et al., 2012). No entanto, a partir da ascensão ao poder da ultradireita em diversos países, o  papel da ideologia política ganhou destaque (Lopreite, 2013; Zbyszewska, 2017; Krizsán; Roggeband, 2018; Krizsán; Popa, 2018; Roggeband; Krizsán, 2020; Daverio, 2023) e no Brasil, ainda é pouco testada com dados longitudinais estaduais e municipais (Carlos et. al.,2025).
+
+</div>
+
+<div class="caixa-azul">
+
+**Contribuição**<br>
+Medir a densidade do subsistema nos níveis **municipal e estadual** (2013–2023) e testar sua associação com a orientação ideológico-partidária dos governos.
+
+</div>
+
+</div>
+
+</div>
+
+## Hipóteses e objetivos
+
+<div class="caixa-azul">
+
+**H1:** estados governados por partidos de direita – e com maior presença de prefeitos de direita e de apoio ao bolsonarismo – apresentam menor expansão ou maior retração da densidade das políticas para mulheres.<br>
+**H0:** não há associação identificável entre a orientação ideológico-partidária e a variação da densidade.
+
+</div>
+
+**Objetivo geral:** analisar a associação entre a orientação ideológico-partidária dos governos (federal, estaduais e municipais) e a densidade do subsistema de políticas para mulheres em 2013, 2018 e 2023.
+
+<div class="pequeno">
+
+**Objetivos específicos**
+
+1. Construir um banco longitudinal estado-ano reunindo dados da MUNIC (agregada por estado) e da ESTADIC (governo estadual).
+2. Classificar a ideologia de presidentes, governadores e prefeitos e medir o apoio a Bolsonaro(% votos) e identificar a variáção ideológica.
+3. Descrever expansão, estagnação e retração do subsistema e associá-las às mudanças de governo.
+
+</div>
+
+## O banco de dados
+
+<div class="pequeno tabela-banco">
+
+**`r nrow(df)` observações** = `r n_distinct(df$uf)` UFs × 3 períodos (2013, 2018, 2023) · fontes: MUNIC e ESTADIC/IBGE, TSE, Bolognesi, Ribeiro e Codato (2023), Projeções da População/IBGE
+
+| Bloco | Variáveis principais | Medida |
+|---|---|---|
+| **Y municipal** (MUNIC) | `densidade` = média de `tx_opm`, `tx_cmdm`, `tx_plano`; `d_densidade` | % de municípios da UF (0–100) |
+| | `densidade_serv` (casa-abrigo e serviços); `hier_opm` (hierarquia dos organismos); `d_agenda` | % / escala 1–3 / índice D |
+| **Y estadual** (ESTADIC) | `rede_est`: 8 serviços da rede de atendimento; `d_rede_est`, `traj_rede` | por 100 mil mulheres / variação % |
+| | `opm_est`, `pem_est`, `cedm_p_est`, `cedm_f_est` | tipo (1–3) e 0/1 |
+| **X** | `gov_id` → `gov_esp` (esquerda/direita), `troca_gov` | espectro do governador eleito |
+| | `pref_ee` … `pref_ud`; `voto_bolso`; `pres_id` | % de municípios por espectro; % onde Bolsonaro venceu |
+| **Controle** | `tx_100k` | % de municípios com +100 mil hab. |
+
+</div>
+
+<div class="fonte">Regra de pareamento: governante eleito, exceto quando deixou o cargo antes do ano de referência da MUNIC (ex.: Temer em 2018). Validação do índice: α de Cronbach = 0,79; PCA correlaciona 0,998 com a média simples.</div>
+
+## Análises descritivas: munic
+
+```{r evolucao, fig.width = 11, fig.height = 4, out.width = "96%"}
+rot_m <- c(tx_opm = "Organismo (OPM)", tx_cmdm = "Conselho (CMDM)", tx_plano = "Plano",
+           densidade = "Densidade", densidade_serv = "Densidade de serviços")
+evol <- df |>
+  group_by(ano) |>
+  summarise(across(all_of(names(rot_m)), ~ median(.x, na.rm = TRUE))) |>
+  pivot_longer(-ano, names_to = "var", values_to = "mediana") |>
+  mutate(serie = factor(rot_m[var], levels = rot_m))
+ggplot(evol, aes(x = ano, y = mediana, group = serie, colour = serie)) +
+  geom_line(linewidth = 1) +
+  geom_line(data = filter(evol, var == "densidade"), linewidth = 2.2) +
+  geom_point(size = 2.8) +
+  geom_text(data = filter(evol, ano == "2023"), aes(label = serie),
+            hjust = -0.1, size = 4.2, show.legend = FALSE) +
+  scale_colour_manual(values = c("#7FA7D1", "#5BAF7E", "#C9A227", "#003F7D", "#B03A2E")) +
+  scale_x_discrete(expand = expansion(add = c(0.3, 0.9))) +
+  labs(x = NULL, y = "Mediana entre as UFs (% de municípios)",
+       caption = "MUNIC/IBGE · 26 UFs") +
+  tema
+```
+
+<div class="pequeno" style="display:flex; gap:26px;">
+
+<div style="flex:1;">
+
+**Técnicas e variáveis**
+
+- Boxplots e medianas por período: `densidade` e componentes (`tx_*`)
+- Trajetórias: `traj_opm`, `traj_cmdm`, `traj_plano`, `traj_rede`, `traj_hier`
+- Densidade × porte (`tx_100k`) e resíduos por UF
+
+</div>
+
+<div style="flex:1;">
+
+- Densidade por espectro do governador (`gov_id`, `gov_esp`) e por % de prefeitos de ultradireita (`pref_ud`)
+- Variação da agenda (`d_agenda`) e da hierarquia (`h_opm`)
+- **Próximos testes** (Cervi, 2017; 2019): Spearman, Gama, Q de Yule, resíduos padronizados, I de Moran
+
+</div>
+
+</div>
+
+## ESTADIC: evolução da rede de atendimento
+
+```{r estadic_evolucao, fig.width = 11, fig.height = 4.3, out.width = "96%"}
+dff <- readRDS("dados/df_final.rds")   # componentes da rede estão no df_final
+
+rot_e <- c(rede_est = "Rede (total)", deg_est = "Delegacias (DEAM)", saude_est = "Saúde",
+           jus_est = "Juizados", ceam_est = "Centros (CEAM)")
+niv <- dff |>
+  group_by(ano) |>
+  summarise(across(all_of(names(rot_e)), ~ median(.x, na.rm = TRUE))) |>
+  pivot_longer(-ano, names_to = "var", values_to = "valor") |>
+  mutate(serie = factor(rot_e[var], levels = rot_e))
+
+ggplot(niv, aes(x = ano, y = valor, group = serie, colour = serie)) +
+  geom_line(linewidth = 1) +
+  geom_line(data = filter(niv, var == "rede_est"), linewidth = 2.2) +
+  geom_point(size = 2.8) +
+  geom_text(data = filter(niv, ano == "2023"), aes(label = serie),
+            hjust = -0.1, size = 4.2, show.legend = FALSE) +
+  scale_colour_manual(values = c("#003F7D", "#7FA7D1", "#5BAF7E", "#C9A227", "#B03A2E")) +
+  scale_x_discrete(expand = expansion(add = c(0.3, 0.9))) +
+  labs(x = NULL, y = "Serviços por 100 mil mulheres\n(mediana entre as UFs)",
+       caption = "ESTADIC/IBGE · rede_est = casa-abrigo, centros, delegacias, juizados, saúde, presídio, defensoria e IML") +
+  tema
+
+med_niv <- niv |> filter(var == "rede_est") |> arrange(ano)
+```
+
+<div class="pequeno">
+
+Mediana da rede estadual: `r fmt(med_niv$valor[1])` (2013), `r fmt(med_niv$valor[2])` (2018) e `r fmt(med_niv$valor[3])` (2023) serviços por 100 mil mulheres. Mediana da variação: `r fmt(med_rede$m[1])`% em `r med_rede$periodo[1]` e `r fmt(med_rede$m[2])`% em `r med_rede$periodo[2]`.
+
+</div>
+
+## ESTADIC: rede e espectro do governador
+
+```{r estadic_gov, fig.width = 11, fig.height = 4.6, out.width = "96%"}
+siglas <- c(Rondonia = "RO", Acre = "AC", Amazonas = "AM", Roraima = "RR", Para = "PA",
+            Amapa = "AP", Tocantins = "TO", Maranhao = "MA", Piaui = "PI", Ceara = "CE",
+            Rio_grande_do_norte = "RN", Paraiba = "PB", Pernambuco = "PE", Alagoas = "AL",
+            Sergipe = "SE", Bahia = "BA", Minas_gerais = "MG", Espirito_santo = "ES",
+            Rio_de_janeiro = "RJ", Sao_paulo = "SP", Parana = "PR", Santa_catarina = "SC",
+            Rio_grande_do_sul = "RS", Mato_grosso_do_sul = "MS", Mato_grosso = "MT",
+            Goias = "GO")
+cores_ano <- c("2013" = "#C9A227", "2018" = "#B03A2E", "2023" = "#003F7D")
+
+d9 <- df |>
+  filter(!is.na(rede_est), !is.na(gov_esp)) |>
+  mutate(sigla = siglas[uf])
+pos9 <- position_jitter(width = 0.28, height = 0, seed = 42)   # mesmo deslocamento para ponto e rótulo
+
+ggplot(d9, aes(x = gov_esp, y = rede_est, colour = ano)) +
+  geom_point(position = pos9, size = 3.2, alpha = 0.85) +
+  geom_text(aes(label = sigla), position = pos9, size = 3, vjust = -0.9,
+            show.legend = FALSE) +
+  scale_x_discrete(drop = TRUE) +
+  scale_colour_manual(values = cores_ano, name = NULL) +
+  labs(x = "Espectro do governador (gov_esp)",
+       y = "Rede estadual\n(serviços por 100 mil mulheres)",
+       caption = "ESTADIC/IBGE · cada ponto é uma UF em um ano (26 UFs × 3 anos) · esquerda = EE, E, CE; direita = CD, D, UD") +
+  tema +
+  theme(legend.position = "top", legend.text = element_text(size = 13),
+        axis.text.x = element_text(size = 15, face = "bold"))
+
+n9 <- d9 |> count(gov_esp)
+med9 <- d9 |> group_by(gov_esp) |> summarise(m = median(rede_est))
+```
+
+<div class="pequeno">
+
+Pontos com governador de esquerda: `r n9$n[n9$gov_esp == "Esquerda"]`; de direita: `r n9$n[n9$gov_esp == "Direita"]`. Mediana da rede: `r fmt(med9$m[med9$gov_esp == "Esquerda"])` (esquerda) e `r fmt(med9$m[med9$gov_esp == "Direita"])` (direita) serviços por 100 mil mulheres. Leitura descritiva: estados pequenos tendem a ter taxas maiores.
+
+</div>
+
+## MUNIC: casos contrastantes
+
+```{r munic_casos, fig.width = 11, fig.height = 4.5, out.width = "96%"}
+grupo_dir <- c("RO", "MS", "SP", "SC")
+grupo_esq <- c("MA", "PI", "PE", "CE")
+d10 <- df |>
+  mutate(sigla = siglas[uf]) |>
+  filter(sigla %in% c(grupo_dir, grupo_esq)) |>
+  mutate(bloco = factor(ifelse(sigla %in% grupo_dir,
+                               "Mais prefeitos de direita e mais voto em Bolsonaro",
+                               "Mais prefeitos de esquerda e menos voto em Bolsonaro"),
+                        levels = c("Mais prefeitos de direita e mais voto em Bolsonaro",
+                                   "Mais prefeitos de esquerda e menos voto em Bolsonaro")),
+         sigla = factor(sigla, levels = c(grupo_dir, grupo_esq)))
+
+ggplot(d10, aes(x = sigla, y = densidade)) +
+  geom_line(aes(group = sigla), colour = "grey70", linewidth = 1) +
+  geom_point(aes(colour = ano), size = 4.2) +
+  facet_grid(~ bloco, scales = "free_x", space = "free_x") +
+  scale_colour_manual(values = cores_ano, name = NULL) +
+  labs(x = NULL, y = "Densidade\n(% médio de municípios)",
+       caption = "MUNIC/IBGE e TSE · densidade = média de % de municípios com organismo, conselho e plano") +
+  tema +
+  theme(legend.position = "top", legend.text = element_text(size = 13),
+        axis.text.x = element_text(size = 15, face = "bold"),
+        strip.text = element_text(size = 13))
+```
+
+<div class="pequeno">
+
+Critério de seleção (pelo perfil político, não pelo resultado): estados com a maior e a menor presença de prefeitos de direita (CD, D, UD) e de municípios em que Bolsonaro venceu no 1º turno (2018 e 2022). Casos ilustrativos: o grupo da esquerda é todo do Nordeste, e a região também pode explicar parte da diferença.
+
+</div>

@@ -1,0 +1,90 @@
+/* Estilo da apresentação – cores da UnB */
+:root {
+  --azul: #003F7D;
+  --verde: #008940;
+  --cinza: #4a4a4a;
+}
+
+slides > slide {
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  color: var(--cinza);
+}
+
+slides > slide:not(.nobackground):after { color: #9a9a9a; }   /* número do slide */
+
+h2 {
+  color: var(--azul) !important;
+  font-weight: 700;
+  font-size: 40px !important;
+  letter-spacing: -0.5px;
+}
+
+h3 { color: var(--verde); font-weight: 700; font-size: 26px; margin-top: 4px; }
+
+slide p, slide li { font-size: 20px; line-height: 1.3; }
+slide li { margin-bottom: 6px; }
+
+strong { color: var(--azul); }
+
+/* faixa verde abaixo do título */
+slide hgroup:after {
+  content: "";
+  display: block;
+  width: 90px;
+  height: 5px;
+  background: var(--verde);
+  margin-top: 10px;
+}
+
+/* capa */
+.capa { text-align: center; }
+.capa img { width: 62%; margin: 10px auto 34px auto; display: block; }
+.capa .titulo {
+  font-size: 40px; font-weight: 700; color: var(--azul);
+  line-height: 1.2; margin: 0 40px 26px 40px;
+}
+.capa .autoria { font-size: 23px; line-height: 1.5; }
+.capa .rodape { font-size: 17px; color: #8a8a8a; margin-top: 24px; }
+
+/* caixas */
+.caixa {
+  border-left: 6px solid var(--verde);
+  background: #f3f8f5;
+  padding: 12px 18px;
+  margin: 8px 0 14px 0;
+  font-size: 21px;
+}
+.caixa-azul {
+  border-left: 6px solid var(--azul);
+  background: #f1f5fa;
+  padding: 12px 18px;
+  margin: 8px 0 14px 0;
+  font-size: 21px;
+}
+.pequeno, .pequeno p, .pequeno li { font-size: 17px !important; }
+.fonte { font-size: 15px; color: #8a8a8a; margin-top: 6px; }
+
+/* tabelas */
+table.rmdtable, slide table { font-size: 17px; border-collapse: collapse; width: 100%; }
+slide table th { background: var(--azul); color: #fff; padding: 6px 8px; text-align: left; }
+slide table td { padding: 5px 8px; border-bottom: 1px solid #e3e3e3; }
+
+/* capa sem título de slide */
+slide.capa hgroup, .capa hgroup { display: none; }
+
+/* slide de conceitos: letra menor para caber lacuna e contribuição */
+.conceitos li, .conceitos p { font-size: 16.5px !important; line-height: 1.3; }
+.conceitos li { margin-bottom: 4px; }
+.conceitos .caixa, .conceitos .caixa-azul { font-size: 16px; padding: 8px 14px; margin: 4px 0 10px 0; }
+
+/* tabela do banco: cabe na largura do slide */
+slide table { table-layout: fixed; width: 100%; }
+slide table td, slide table th { word-wrap: break-word; overflow-wrap: anywhere; }
+slide table code { white-space: normal; font-size: 12.5px; }
+.tabela-banco table { font-size: 14px; }
+.tabela-banco td, .tabela-banco th { padding: 3px 6px !important; }
+.tabela-banco table th:nth-child(1), .tabela-banco table td:nth-child(1) { width: 17%; }
+.tabela-banco table th:nth-child(2), .tabela-banco table td:nth-child(2) { width: 53%; }
+.tabela-banco table th:nth-child(3), .tabela-banco table td:nth-child(3) { width: 30%; }
+.tabela-banco p { font-size: 15px !important; margin-bottom: 4px; }
+slide hgroup:has(h2:empty) { display: none; }
