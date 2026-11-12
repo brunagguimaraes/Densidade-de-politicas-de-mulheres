@@ -1,0 +1,79 @@
+uf,ano,regiao,rede_est,rede_comp,log_rede,d_rede_est,traj_rede,ret_rede,opm_est,pem_est,cedm_p_est,gov_dir,troca_gov,voto_bolso,voto_bolso_ant,tx_100k
+Acre,2013,Norte,3.75,8,1.3217558399823195,,,,3,0,1,0,,,,4.55
+Acre,2018,Norte,3.06,8,1.1184149159642893,-18.2,Retração,1,3,1,1,0,Sem troca,81.82,,4.55
+Acre,2023,Norte,3.43,8,1.2325602611778486,12,Expansão,0,3,1,1,1,Para a direita,81.82,81.82,4.55
+Alagoas,2013,Nordeste,0.67,8,-0.40047756659712525,,,,2,0,1,1,,,,1.96
+Alagoas,2018,Nordeste,0.97,8,-0.030459207484708574,43.4,Expansão,0,2,1,1,1,Sem troca,13.73,,1.96
+Alagoas,2023,Nordeste,0.84,8,-0.1743533871447778,-13.1,Retração,1,2,1,1,1,Sem troca,7.84,13.73,1.96
+Amapa,2013,Norte,3.32,8,1.199964782928397,,,,3,1,1,0,,,,12.5
+Amapa,2018,Norte,6.74,8,1.9080599249242156,103,Expansão,0,3,1,1,0,Sem troca,18.75,,12.5
+Amapa,2023,Norte,4.76,8,1.5602476682433286,-29.4,Retração,1,3,1,1,1,Para a direita,18.75,18.75,12.5
+Amazonas,2013,Norte,0.7,8,-0.35667494393873245,,,,2,1,1,1,,,,3.23
+Amazonas,2018,Norte,0.85,8,-0.16251892949777494,21.7,Expansão,0,2,1,1,0,Para a esquerda,3.23,,3.23
+Amazonas,2023,Norte,0.76,8,-0.2744368457017603,-10.9,Retração,1,2,1,1,1,Para a direita,6.45,3.23,4.84
+Bahia,2013,Nordeste,0.97,8,-0.030459207484708574,,,,3,1,0,0,,,,3.84
+Bahia,2018,Nordeste,0.35,7,-1.0498221244986778,-64.2,Retração,1,3,1,1,0,Sem troca,1.44,,4.08
+Bahia,2023,Nordeste,2.23,8,0.8020015854720274,543.5,Expansão,0,3,1,0,0,Sem troca,0.48,1.44,4.32
+Ceara,2013,Nordeste,0.9,8,-0.10536051565782628,,,,1,0,1,0,,,,4.89
+Ceara,2018,Nordeste,0.76,8,-0.2744368457017603,-15.2,Retração,1,1,0,1,0,Sem troca,0,,4.89
+Ceara,2023,Nordeste,0.8,8,-0.2231435513142097,5.9,Expansão,0,3,0,1,0,Sem troca,0,0,4.35
+Espirito_santo,2013,Sudeste,1.26,8,0.23111172096338664,,,,1,0,0,0,,,,11.54
+Espirito_santo,2018,Sudeste,1.45,8,0.371563556432483,15.1,Expansão,0,1,0,1,1,Para a direita,82.05,,11.54
+Espirito_santo,2023,Sudeste,2.21,8,0.7929925155296614,52.9,Expansão,0,3,1,0,0,Para a esquerda,71.79,82.05,11.54
+Goias,2013,Centro-Oeste,1.05,8,0.04879016416943205,,,,3,1,1,1,,,,4.07
+Goias,2018,Centro-Oeste,1.52,8,0.41871033485818504,45.7,Expansão,0,1,1,1,1,Sem troca,82.93,,5.28
+Goias,2023,Centro-Oeste,2.82,8,1.0367368849500223,85.3,Expansão,0,1,1,1,1,Sem troca,60.57,82.93,6.1
+Maranhao,2013,Nordeste,1,8,0,,,,3,0,1,1,,,,4.15
+Maranhao,2018,Nordeste,1.52,8,0.41871033485818504,51.8,Expansão,0,3,1,1,0,Para a esquerda,1.38,,4.15
+Maranhao,2023,Nordeste,1.18,8,0.16551443847757333,-21.9,Retração,1,3,1,1,0,Sem troca,1.38,1.38,4.61
+Mato_grosso,2013,Centro-Oeste,0.82,8,-0.19845093872383832,,,,2,0,1,1,,,,2.84
+Mato_grosso,2018,Centro-Oeste,4.12,8,1.415853163361435,402.2,Expansão,0,1,1,1,0,Para a esquerda,89.36,,3.55
+Mato_grosso,2023,Centro-Oeste,0.75,8,-0.2876820724517809,-81.9,Retração,1,1,1,1,1,Para a direita,82.98,89.36,4.26
+Mato_grosso_do_sul,2013,Centro-Oeste,4.22,8,1.4398351280479205,,,,1,1,1,1,,,,5.06
+Mato_grosso_do_sul,2018,Centro-Oeste,1.3,8,0.26236426446749106,-69.2,Retração,1,1,1,1,1,Sem troca,87.34,,5.06
+Mato_grosso_do_sul,2023,Centro-Oeste,1.17,8,0.1570037488096647,-10,Retração,1,1,1,1,1,Sem troca,72.15,87.34,3.8
+Minas_gerais,2013,Sudeste,1.39,8,0.3293037471426003,,,,1,1,1,1,,,,3.52
+Minas_gerais,2018,Sudeste,1.6,8,0.47000362924573563,14.7,Expansão,0,1,1,1,0,Para a esquerda,56.39,,3.75
+Minas_gerais,2023,Sudeste,2.38,8,0.8671004876833833,49.2,Expansão,0,1,1,1,1,Para a direita,26.14,56.39,3.99
+Para,2013,Norte,1.11,8,0.10436001532424286,,,,2,1,1,1,,,,10.42
+Para,2018,Norte,1.21,6,0.1906203596086497,8.4,Expansão,0,1,1,1,1,Sem troca,22.92,,12.5
+Para,2023,Norte,1.35,8,0.30010459245033816,12.1,Expansão,0,3,1,1,1,Sem troca,25.69,22.92,10.42
+Paraiba,2013,Nordeste,1.55,8,0.4382549309311553,,,,3,1,0,0,,,,1.79
+Paraiba,2018,Nordeste,2.13,8,0.7561219797213337,37.4,Expansão,0,2,1,0,0,Sem troca,2.24,,1.79
+Paraiba,2023,Nordeste,1.46,8,0.37843643572024505,-31.6,Retração,1,3,1,0,0,Sem troca,0,2.24,1.79
+Parana,2013,Sul,0.36,8,-1.0216512475319814,,,,1,0,1,1,,,,5.01
+Parana,2018,Sul,1.31,8,0.2700271372130602,263.9,Expansão,0,2,1,1,1,Sem troca,77.44,,5.01
+Parana,2023,Sul,1.28,8,0.2468600779315258,-2.2,Estagnação,0,2,1,1,1,Sem troca,64.91,77.44,5.51
+Pernambuco,2013,Nordeste,1.06,8,0.058268908123975824,,,,3,1,0,0,,,,6.49
+Pernambuco,2018,Nordeste,1.92,8,0.6523251860396901,81.1,Expansão,0,3,0,1,0,Sem troca,5.41,,7.03
+Pernambuco,2023,Nordeste,1.36,8,0.3074846997479607,-29.2,Retração,1,3,0,1,1,Para a direita,0.54,5.41,6.49
+Piaui,2013,Nordeste,1.77,8,0.5709795465857378,,,,1,0,1,0,,,,0.89
+Piaui,2018,Nordeste,1.96,8,0.6729444732424258,11,Expansão,0,3,0,1,0,Sem troca,0,,0.89
+Piaui,2023,Nordeste,1.98,8,0.6830968447064438,1,Estagnação,0,3,1,1,0,Sem troca,0,0,0.89
+Rio_de_janeiro,2013,Sudeste,0.85,8,-0.16251892949777494,,,,1,0,0,1,,,,28.26
+Rio_de_janeiro,2018,Sudeste,0.24,3,-1.4271163556401458,-71.3,Retração,1,1,0,0,1,Sem troca,100,,31.52
+Rio_de_janeiro,2023,Sudeste,0.64,8,-0.4462871026284195,162.3,Expansão,0,3,0,0,1,Sem troca,76.09,100,30.43
+Rio_grande_do_norte,2013,Nordeste,1.19,8,0.17395330712343798,,,,1,1,,1,,,,1.8
+Rio_grande_do_norte,2018,Nordeste,0.69,8,-0.37106368139083207,-41.8,Retração,1,1,0,0,1,Sem troca,2.99,,2.4
+Rio_grande_do_norte,2023,Nordeste,1.53,8,0.4252677354043441,120.8,Expansão,0,2,1,1,0,Para a esquerda,0.6,2.99,2.4
+Rio_grande_do_sul,2013,Sul,1.19,8,0.17395330712343798,,,,3,0,0,0,,,,3.82
+Rio_grande_do_sul,2018,Sul,0.75,8,-0.2876820724517809,-36.9,Retração,1,1,0,0,1,Para a direita,84.51,,3.82
+Rio_grande_do_sul,2023,Sul,1.63,4,0.4885800148186709,117.3,Expansão,0,1,0,0,1,Sem troca,64.59,84.51,3.82
+Rondonia,2013,Norte,0.49,8,-0.7133498878774648,,,,1,0,1,1,,,,5.77
+Rondonia,2018,Norte,1.78,8,0.5766133643039938,259.8,Expansão,0,1,0,1,1,Sem troca,100,,5.77
+Rondonia,2023,Norte,,0,,,,,,,,1,Sem troca,100,100,3.85
+Roraima,2013,Norte,2.79,8,1.0260415958332743,,,,3,0,0,1,,,,6.67
+Roraima,2018,Norte,2.41,8,0.8796267475025636,-13.6,Retração,1,1,1,0,1,Sem troca,86.67,,6.67
+Roraima,2023,Norte,2.92,8,1.0715836162801904,21,Expansão,0,1,1,1,1,Sem troca,93.33,86.67,6.67
+Santa_catarina,2013,Sul,1.85,8,0.6151856390902335,,,,1,0,1,1,,,,4.41
+Santa_catarina,2018,Sul,2.7,8,0.9932517730102834,46.3,Expansão,0,1,0,1,1,Sem troca,88.81,,4.41
+Santa_catarina,2023,Sul,1.87,8,0.6259384308664954,-30.6,Retração,1,1,0,0,1,Sem troca,89.15,88.81,4.75
+Sao_paulo,2013,Sudeste,0.68,8,-0.3856624808119846,,,,1,0,0,1,,,,11.78
+Sao_paulo,2018,Sudeste,0.84,8,-0.1743533871447778,23.2,Expansão,0,1,0,0,1,Sem troca,97.21,,12.4
+Sao_paulo,2023,Sudeste,1.65,8,0.5007752879124892,97.7,Expansão,0,3,0,0,1,Sem troca,79.84,97.21,12.09
+Sergipe,2013,Nordeste,2.71,8,0.9969486348916096,,,,3,1,,0,,,,4
+Sergipe,2018,Nordeste,1.74,8,0.5538851132264376,-36,Retração,1,1,1,1,1,Para a direita,1.33,,4
+Sergipe,2023,Nordeste,4.99,8,1.6074359097634274,187.1,Expansão,0,3,1,1,1,Sem troca,0,1.33,5.33
+Tocantins,2013,Norte,6.19,8,1.8229350866965048,,,,1,1,1,1,,,,1.44
+Tocantins,2018,Norte,3.75,8,1.3217558399823195,-39.5,Retração,1,1,0,0,1,Sem troca,23.02,,1.44
+Tocantins,2023,Norte,1.67,8,0.5128236264286637,-55.4,Retração,1,3,0,1,1,Sem troca,12.23,23.02,1.44
