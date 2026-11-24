@@ -2,7 +2,7 @@
 
 Apresentação do andamento da pesquisa de mestrado em Ciência Política (IPOL/UnB).
 
-**Autora:** Bruna Gomes Guimarães · **Orientador:** Prof. Frederico Bertholini
+**Autora:** Bruna Gomes Guimarães (bru.gomesg@gmail.com) · **Orientador:** Prof. Frederico Bertholini
 
 👉 **Ver a apresentação:** https://brunagguimaraes.github.io/Densidade-de-politicas-de-mulheres/
 
