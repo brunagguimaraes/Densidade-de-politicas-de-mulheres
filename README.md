@@ -12,7 +12,7 @@ Apresentação do andamento da pesquisa de mestrado em Ciência Política (IPOL/
 |---|---|
 | `index.html` | Apresentação pronta (slides em HTML, gerados com R Markdown / ioslides) |
 | `apresentacao_pesquisa.Rmd` | Código-fonte da apresentação |
-| `unb.css`, `logounb.jpg` | Estilo e logo |
+| `unb.css`, `logounb.jpg` | logo |
 | `dados/df_analise.rds` | Banco enxuto: 26 UFs × 3 períodos (2013, 2018, 2023) = 78 linhas |
 | `dados/df_final.rds` | Banco completo (inclui os componentes da rede estadual) |
 
